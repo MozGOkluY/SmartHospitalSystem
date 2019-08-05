@@ -4,10 +4,81 @@
         <name>SmartHospitalSystem.Api</name>
     </assembly>
     <members>
-        <member name="M:SmartHospitalSystem.Api.Controllers.ValuesController.Get">
+        <member name="T:SmartHospitalSystem.Core.Configurations.MongoDbConfiguration">
             <summary>
-            Get values
+            Configuration of DB
             </summary>
+        </member>
+        <member name="M:SmartHospitalSystem.Core.Configurations.MongoDbConfiguration.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Constructor with parameters for configuration
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:SmartHospitalSystem.Core.Configurations.MongoDbConfiguration.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Core.Configurations.MongoDbConfiguration.ConnectionString">
+            <summary>
+            Connection string
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Core.Configurations.MongoDbConfiguration.Database">
+            <summary>
+            Database name
+            </summary>
+        </member>
+        <member name="T:SmartHospitalSystem.Core.Configurations.TokenConfiguration">
+            <inheritdoc />
+        </member>
+        <member name="M:SmartHospitalSystem.Core.Configurations.TokenConfiguration.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Constructor with parameters for configuration
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:SmartHospitalSystem.Core.Configurations.TokenConfiguration.Secret">
+            <inheritdoc />
+        </member>
+        <member name="P:SmartHospitalSystem.Core.Configurations.TokenConfiguration.Issuer">
+            <inheritdoc />
+        </member>
+        <member name="P:SmartHospitalSystem.Core.Configurations.TokenConfiguration.Audience">
+            <inheritdoc />
+        </member>
+        <member name="P:SmartHospitalSystem.Core.Configurations.TokenConfiguration.TokenExpiresIn">
+            <inheritdoc />
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Controllers.TokensController">
+            <summary>
+            The controller allows managing the authorization
+            </summary>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.TokensController.#ctor(SmartHospitalSystem.Core.Interfaces.Managers.IUserManager,SmartHospitalSystem.Core.Interfaces.Managers.IAuthorizationManager,Microsoft.AspNetCore.Identity.IPasswordHasher{SmartHospitalSystem.Core.Models.UserProfile},SmartHospitalSystem.Core.Interfaces.Configurations.ITokenConfiguration)">
+            <summary>
+            TokensController constructor
+            </summary>
+            <param name="userManager"></param>
+            <param name="authorizationManager"></param>
+            <param name="passwordHasher"></param>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.TokensController.LoginUser(SmartHospitalSystem.Core.Models.UserLoginModel)">
+            <summary>
+            Login user via login and password
+            </summary>
+            <param name="loginModel">Model for authorization</param>
+            <response code="404">Profile with give login not found</response>
+            <response code="400">Invalid login model</response>
+            <response code="200">Returns new token</response>
+            <returns>Token</returns>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.TokensController.SeedAdmin">
+            <summary>
+            Seeds basic users
+            </summary>
+            <response code="200">Basic users seeded</response>
             <returns></returns>
         </member>
         <member name="T:SmartHospitalSystem.Api.Helpers.SwaggerHelper">
