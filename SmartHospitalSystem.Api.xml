@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SmartHospitalSystem.Api</name>
+    </assembly>
+    <members>
+        <member name="M:SmartHospitalSystem.Api.Controllers.ValuesController.Get">
+            <summary>
+            Get values
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Helpers.SwaggerHelper">
+            <summary>
+                Swagger helper.
+            </summary>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Helpers.SwaggerHelper.ConfigureSwaggerGen(Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions)">
+            <summary>
+                Configure generation of swagger documentation.
+            </summary>
+            <param name="swaggerGenOptions">Swagger code generation options.</param>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Helpers.SwaggerHelper.ConfigureSwagger(Swashbuckle.AspNetCore.Swagger.SwaggerOptions)">
+            <summary>
+                Configure swagger.
+            </summary>
+            <param name="swaggerOptions">Swagger options.</param>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Helpers.SwaggerHelper.ConfigureSwaggerUi(Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIOptions)">
+            <summary>
+                Configures Swagger UI display.
+            </summary>
+            <param name="swaggerUiOptions">Swagger ui display options.</param>
+        </member>
+    </members>
+</doc>
