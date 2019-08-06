@@ -45,9 +45,13 @@ namespace SmartHospitalSystem.Api
 
             // repositories
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IBedRepository, BedRepository>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 
             // managers
             services.AddScoped<IUserManager, UserManager>();
+            services.AddScoped<IBedManager, BedManager>();
+            services.AddScoped<IDepartmentManager, DepartmentManager>();
             services.AddScoped<IAuthorizationManager, AuthorizationManager>();
 
             services.AddCors(options =>

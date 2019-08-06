@@ -20,6 +20,7 @@
     <Folder Include="Helpers\" />
     <Folder Include="Controllers\v1\" />
     <Folder Include="Configurations\" />
+    <Folder Include="Requests\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmartHospitalSystem.Core\SmartHospitalSystem.Core.csproj" />
