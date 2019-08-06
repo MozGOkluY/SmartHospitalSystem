@@ -1,5 +1,6 @@
 ﻿using System;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.IdGenerators;
 
 namespace SmartHospitalSystem.Core.Models
 {
@@ -16,6 +17,7 @@ namespace SmartHospitalSystem.Core.Models
         /// <summary>
         /// Gets or set department id
         /// </summary>
+        [BsonId(IdGenerator = typeof(StringObjectIdGenerator))]
         [BsonElement("departmentId")]
         public string DepartmentId { get; set; }
 

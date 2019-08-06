@@ -1,6 +1,7 @@
-﻿using System.Runtime.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 
-namespace SmartHospitalSystem.Core.Models
+namespace SmartHospitalSystem.Api.Requests
 {
     /// <summary>
     /// Create department request

@@ -55,7 +55,7 @@ namespace SmartHospitalSystem.Api.Controllers
         /// <returns>Token</returns>
         [AllowAnonymous]
         [Route("login")]
-        [ProducesResponseType(typeof(string), 404)]
+        [ProducesResponseType(typeof(string), 401)]
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(string), 200)]
         [HttpPost]

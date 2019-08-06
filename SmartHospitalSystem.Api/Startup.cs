@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -80,12 +81,14 @@ namespace SmartHospitalSystem.Api
                 o.TokenValidationParameters.ValidateLifetime = true;
                 o.TokenValidationParameters.ClockSkew = TimeSpan.Zero;
             });
-            services.AddAuthorization(auth => auth.AddPolicy("Bearer", authPolicy));
 
+            services.AddAuthorization(auth => auth.AddPolicy("Bearer", authPolicy));
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.SuppressModelStateInvalidFilter = true;
             });
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddSwaggerGen(SwaggerHelper.ConfigureSwaggerGen);
         }

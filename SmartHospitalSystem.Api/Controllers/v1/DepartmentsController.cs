@@ -1,6 +1,9 @@
 ﻿using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SmartHospitalSystem.Api.Requests;
+using SmartHospitalSystem.Api.Responses;
 using SmartHospitalSystem.Core.Interfaces.Managers;
 using SmartHospitalSystem.Core.Models;
 
@@ -15,13 +18,15 @@ namespace SmartHospitalSystem.Api.Controllers
     public class DepartmentsController : Controller
     {
         private readonly IDepartmentManager _departmentManager;
+        private readonly IMapper _mapper;
 
         /// <summary>
         /// TokensController constructor
         /// </summary>
-        public DepartmentsController(IDepartmentManager departmentManager)
+        public DepartmentsController(IDepartmentManager departmentManager, IMapper mapper)
         {
             _departmentManager = departmentManager;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -29,9 +34,20 @@ namespace SmartHospitalSystem.Api.Controllers
         /// </summary>
         /// <param name="loginModel"></param>
         /// <returns></returns>
+        [AllowAnonymous]
+        [HttpPost]
+        [ProducesResponseType(typeof(string), 404)]
         public async Task<IActionResult> CreateDepartment([FromBody]CreateDepartmentRequest createDepartmentRequest)
-        {   
-           return NotFound("Profile with give login not found");
+        {
+            if (string.IsNullOrWhiteSpace(createDepartmentRequest.DepartmentName))
+            {
+                return BadRequest("Invalid department name");
+            }
+
+            var model = _mapper.Map<DepartmentModel>(createDepartmentRequest);
+            await _departmentManager.InsertDepartmentAsync(model);
+            var response = _mapper.Map<CreateDepartmentResponse>(model);
+            return Ok(response);
         }
     }
 }
