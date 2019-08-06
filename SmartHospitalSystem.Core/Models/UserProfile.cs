@@ -83,6 +83,32 @@ namespace SmartHospitalSystem.Core.Models
         public string City { get; set; }
 
         /// <summary>
+        /// MaritalStatus
+        /// </summary>
+        [BsonElement("maritalStatus")]
+        public MaritalStatusEnum MaritalStatus { get; set; }
+
+        /// <summary>
+        /// Blood group
+        /// </summary>
+        [BsonElement("bloodGroup")]
+        public BloodGroup BloodGroup { get; set; }
+
+        /// <summary>
+        /// Image
+        /// </summary>
+        [BsonElement("image")]
+        public string Image { get; set; }
+
+        /// <summary>
+        /// Date of user creation
+        /// </summary>
+        [BsonElement("birthDate")]
+        [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
+        [DataMember]
+        public DateTime BirthDate { get; set; }   // date and time
+
+        /// <summary>
         /// Date of user creation
         /// </summary>
         [BsonElement("createdDate")]

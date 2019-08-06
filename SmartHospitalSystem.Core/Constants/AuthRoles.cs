@@ -26,6 +26,11 @@
         public const string REGISTRY = "registry";
 
         /// <summary>
+        /// Patient role
+        /// </summary>
+        public const string PATIENT = "patient";
+
+        /// <summary>
         /// Mixed role
         /// </summary>
         public const string MIXED = "nurse, admin, registry";
