@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartHospitalSystem.Api.Requests;
 using SmartHospitalSystem.Api.Responses;
+using SmartHospitalSystem.Core.Constants;
 using SmartHospitalSystem.Core.Interfaces.Managers;
 using SmartHospitalSystem.Core.Models;
 
@@ -32,11 +33,12 @@ namespace SmartHospitalSystem.Api.Controllers
         /// <summary>
         /// Creates new unit in hospital
         /// </summary>
-        /// <param name="loginModel"></param>
-        /// <returns></returns>
-        [AllowAnonymous]
+        /// <param name="createDepartmentRequest">Request model</param>
+        /// <returns>Created department</returns>
+        [Authorize(Roles = AuthRoles.ADMIN)]
         [HttpPost]
-        [ProducesResponseType(typeof(string), 404)]
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(CreateDepartmentResponse), 200)]
         public async Task<IActionResult> CreateDepartment([FromBody]CreateDepartmentRequest createDepartmentRequest)
         {
             if (string.IsNullOrWhiteSpace(createDepartmentRequest.DepartmentName))

@@ -36,6 +36,7 @@ namespace SmartHospitalSystem.Api.Controllers
         /// <param name="userManager"></param>
         /// <param name="authorizationManager"></param>
         /// <param name="passwordHasher"></param>
+        /// <param name="tokenConfiguration"></param>
         public TokensController(IUserManager userManager, IAuthorizationManager authorizationManager,
             IPasswordHasher<UserProfile> passwordHasher, ITokenConfiguration tokenConfiguration)
         {
