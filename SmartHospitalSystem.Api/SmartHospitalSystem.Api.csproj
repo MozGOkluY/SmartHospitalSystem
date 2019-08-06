@@ -25,6 +25,10 @@
     <Folder Include="Requests\" />
     <Folder Include="Mapper\" />
     <Folder Include="Responses\" />
+    <Folder Include="Requests\Departments\" />
+    <Folder Include="Responses\Departments\" />
+    <Folder Include="Responses\Locations\" />
+    <Folder Include="Requests\Locations\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmartHospitalSystem.Core\SmartHospitalSystem.Core.csproj" />

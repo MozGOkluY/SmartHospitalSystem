@@ -20,7 +20,7 @@ namespace SmartHospitalSystem.Core.Interfaces.Managers
         /// Returns all existing department
         /// </summary>
         /// <returns></returns>
-        Task<List<DepartmentModel>> GetAllUsers();
+        Task<List<DepartmentModel>> GetAllDepartments();
 
         /// <summary>
         /// Inserts new department in Db

@@ -20,21 +20,21 @@ namespace SmartHospitalSystem.Core.Interfaces.Managers
         /// Returns all existing bed
         /// </summary>
         /// <returns></returns>
-        Task<List<BedModel>> GetAllUsers();
+        Task<List<BedModel>> GetAllBeds();
 
         /// <summary>
         /// Inserts new bedModel in Db
         /// </summary>
         /// <param name="bedModel">Model of bed that will be inserted</param>
         /// <returns></returns>
-        Task InsertProfileAsync(BedModel bedModel);
+        Task InsertBedAsync(BedModel bedModel);
 
         /// <summary>
         /// Updates existing bed in Db
         /// </summary>
         /// <param name="bedModel">Model of bed that will be updated</param>
         /// <returns></returns>
-        Task UpdateProfileAsync(BedModel bedModel);
+        Task UpdateBedAsync(BedModel bedModel);
 
         /// <summary>
         /// Deletes existing bed in Db

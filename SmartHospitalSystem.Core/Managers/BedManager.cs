@@ -29,7 +29,7 @@ namespace SmartHospitalSystem.Core.Managers
         }
 
         /// <inheritdoc />
-        public Task<List<BedModel>> GetAllUsers()
+        public Task<List<BedModel>> GetAllBeds()
         {
             return _bedRepository.SelectAllAsync();
         }
@@ -41,13 +41,13 @@ namespace SmartHospitalSystem.Core.Managers
         }
 
         /// <inheritdoc />
-        public Task InsertProfileAsync(BedModel bedModel)
+        public Task InsertBedAsync(BedModel bedModel)
         {
             return _bedRepository.InsertAsync(bedModel);
         }
 
         /// <inheritdoc />
-        public Task UpdateProfileAsync(BedModel bedModel)
+        public Task UpdateBedAsync(BedModel bedModel)
         {
             return _bedRepository.ReplaceByIdAsync(bedModel.BedId, bedModel);
         }

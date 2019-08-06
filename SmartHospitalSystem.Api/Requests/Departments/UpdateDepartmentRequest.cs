@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace SmartHospitalSystem.Api.Requests
 {
@@ -8,12 +9,6 @@ namespace SmartHospitalSystem.Api.Requests
     [DataContract]
     public class UpdateDepartmentRequest
     {
-        /// <summary>
-        /// Gets or set department id
-        /// </summary>
-        [DataMember]
-        public string DepartmentId { get; set; }
-
         /// <summary>
         /// Gets or set department name
         /// </summary>
@@ -25,5 +20,17 @@ namespace SmartHospitalSystem.Api.Requests
         /// </summary>
         [DataMember]
         public string Description { get; set; }
+
+        /// <summary>
+        /// Gets or sets department id
+        /// </summary>
+        [DataMember]
+        public string DepartmentId { get; set; }
+
+        /// <summary>
+        /// Gets or sets created date
+        /// </summary>
+        [DataMember]
+        public DateTime CreatedDate { get; set; }
     }
 }

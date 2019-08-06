@@ -98,28 +98,15 @@ namespace SmartHospitalSystem.Api.Controllers
             var profiles = new[]
             {
                 new UserProfile{
-                    Login = "mozgokluy",
+                    Login = "user.admin",
                     CreatedDate = DateTime.Now,
                     Email = "mozgopluy@gmail.com",
                     FirstName = "Danyil",
                     LastName = "Hryhoriev",
-                    Password = "12345678",
+                    Password = "password",
                     Roles = new List<UserRoleEnum>
                     {
                         UserRoleEnum.Admin
-                    }
-                },
-                new UserProfile
-                {
-                    Login = "user1",
-                    CreatedDate = DateTime.Now,
-                    Email = "qwerty@gmail.com",
-                    FirstName = "Danyil",
-                    LastName = "Hryhoriev",
-                    Password = "12345678",
-                    Roles = new List<UserRoleEnum>
-                    {
-                        UserRoleEnum.Registry
                     }
                 }
             };

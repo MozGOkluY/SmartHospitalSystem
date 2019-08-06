@@ -51,9 +51,54 @@
         <member name="P:SmartHospitalSystem.Core.Configurations.TokenConfiguration.TokenExpiresIn">
             <inheritdoc />
         </member>
+        <member name="T:SmartHospitalSystem.Api.Controllers.BedsController">
+            <summary>
+            The controller allows managing the beds
+            </summary>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.BedsController.#ctor(SmartHospitalSystem.Core.Interfaces.Managers.IBedManager,AutoMapper.IMapper)">
+            <summary>
+            Beds controller constructor
+            </summary>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.BedsController.CreateBedAsync(SmartHospitalSystem.Api.Requests.CreateBedRequest)">
+            <summary>
+            Creates new bed in hospital
+            </summary>
+            <param name="createBedRequest">Request model</param>
+            <returns>Created bed</returns>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.BedsController.GetBedByIdAsync(System.String)">
+            <summary>
+            Get bed by id
+            </summary>
+            <param name="id">Bed id</param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.BedsController.GetAllBedsAsync">
+            <summary>
+            Get bed by id
+            </summary>
+            <returns>All Beds</returns>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.BedsController.UpdateBedAsync(System.String,SmartHospitalSystem.Api.Requests.UpdateBedRequest)">
+            <summary>
+            Updates new Bed in hospital
+            </summary>
+            <param name="id">Bed id</param>
+            <param name="updateBedRequest">Request model</param>
+            <returns>Updated Bed</returns>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.BedsController.UpdateBedAsync(System.String)">
+            <summary>
+            Deletes Bed in hospital
+            </summary>
+            <param name="id">Bed id</param>
+            <returns></returns>
+        </member>
         <member name="T:SmartHospitalSystem.Api.Controllers.DepartmentsController">
             <summary>
-            The controller allows managing the units
+            The controller allows managing the departments
             </summary>
         </member>
         <member name="M:SmartHospitalSystem.Api.Controllers.DepartmentsController.#ctor(SmartHospitalSystem.Core.Interfaces.Managers.IDepartmentManager,AutoMapper.IMapper)">
@@ -61,12 +106,40 @@
             TokensController constructor
             </summary>
         </member>
-        <member name="M:SmartHospitalSystem.Api.Controllers.DepartmentsController.CreateDepartment(SmartHospitalSystem.Api.Requests.CreateDepartmentRequest)">
+        <member name="M:SmartHospitalSystem.Api.Controllers.DepartmentsController.CreateDepartmentAsync(SmartHospitalSystem.Api.Requests.CreateDepartmentRequest)">
             <summary>
-            Creates new unit in hospital
+            Creates new department in hospital
             </summary>
             <param name="createDepartmentRequest">Request model</param>
             <returns>Created department</returns>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.DepartmentsController.GetDepartmentByIdAsync(System.String)">
+            <summary>
+            Get department by id
+            </summary>
+            <param name="id">Department id</param>
+            <returns>Created department</returns>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.DepartmentsController.GetAllDepartmentsAsync">
+            <summary>
+            Get department by id
+            </summary>
+            <returns>All departments</returns>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.DepartmentsController.UpdateDepartmentAsync(System.String,SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest)">
+            <summary>
+            Updates new department in hospital
+            </summary>
+            <param name="id">Department id</param>
+            <param name="updateDepartmentRequest">Request model</param>
+            <returns>Updated department</returns>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.DepartmentsController.UpdateDepartmentAsync(System.String)">
+            <summary>
+            Deletes department in hospital
+            </summary>
+            <param name="id">Department id</param>
+            <returns></returns>
         </member>
         <member name="T:SmartHospitalSystem.Api.Controllers.TokensController">
             <summary>
@@ -170,11 +243,6 @@
             Update department request
             </summary>
         </member>
-        <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.DepartmentId">
-            <summary>
-            Gets or set department id
-            </summary>
-        </member>
         <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.DepartmentName">
             <summary>
             Gets or set department name
@@ -183,6 +251,76 @@
         <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.Description">
             <summary>
             Gets or set description
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.DepartmentId">
+            <summary>
+            Gets or sets department id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.CreatedDate">
+            <summary>
+            Gets or sets created date
+            </summary>
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Requests.CreateBedRequest">
+            <summary>
+            Create bed request
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateBedRequest.DepartmentId">
+            <summary>
+            Gets or set department Id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateBedRequest.BedId">
+            <summary>
+            Gets or set bed id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateBedRequest.BedName">
+            <summary>
+            Gets or set bed name
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateBedRequest.PatientId">
+            <summary>
+            Gets or set patient id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateBedRequest.CreatedDate">
+            <summary>
+            Date of unit creation
+            </summary>
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Requests.UpdateBedRequest">
+            <summary>
+            Update bed request
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateBedRequest.DepartmentId">
+            <summary>
+            Gets or set department Id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateBedRequest.BedId">
+            <summary>
+            Gets or set bed id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateBedRequest.BedName">
+            <summary>
+            Gets or set bed name
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateBedRequest.PatientId">
+            <summary>
+            Gets or set patient id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateBedRequest.CreatedDate">
+            <summary>
+            Date of unit creation
             </summary>
         </member>
         <member name="T:SmartHospitalSystem.Api.Responses.CreateDepartmentResponse">
@@ -208,6 +346,151 @@
         <member name="P:SmartHospitalSystem.Api.Responses.CreateDepartmentResponse.CreatedDate">
             <summary>
             Gets or sets created date
+            </summary>
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Responses.DepartmentResponse">
+            <summary>
+            Department response
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.DepartmentResponse.DepartmentName">
+            <summary>
+            Gets or set department name
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.DepartmentResponse.Description">
+            <summary>
+            Gets or set description
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.DepartmentResponse.DepartmentId">
+            <summary>
+            Gets or sets department id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.DepartmentResponse.CreatedDate">
+            <summary>
+            Gets or sets created date
+            </summary>
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Responses.DepartmentsResponse">
+            <summary>
+            Departments response
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.DepartmentsResponse.Departments">
+            <summary>
+            Gets or sets departments
+            </summary>
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Responses.UpdateDepartmentResponse">
+            <summary>
+            Update department response
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UpdateDepartmentResponse.DepartmentName">
+            <summary>
+            Gets or set department name
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UpdateDepartmentResponse.Description">
+            <summary>
+            Gets or set description
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UpdateDepartmentResponse.DepartmentId">
+            <summary>
+            Gets or sets department id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UpdateDepartmentResponse.CreatedDate">
+            <summary>
+            Gets or sets created date
+            </summary>
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Responses.BedResponse">
+            <summary>
+            Bed response
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.BedResponse.DepartmentId">
+            <summary>
+            Gets or set department Id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.BedResponse.BedId">
+            <summary>
+            Gets or set bed id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.BedResponse.BedName">
+            <summary>
+            Gets or set bed name
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.BedResponse.PatientId">
+            <summary>
+            Gets or set patient id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.BedResponse.CreatedDate">
+            <summary>
+            Date of unit creation
+            </summary>
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Responses.BedsResponse">
+            <summary>
+            Beds response
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.BedsResponse.Beds">
+            <summary>
+            Gets or sets beds
+            </summary>
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Responses.CreateBedResponse">
+            <summary>
+            Create bed response
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.CreateBedResponse.DepartmentId">
+            <summary>
+            Gets or set department Id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.CreateBedResponse.BedName">
+            <summary>
+            Gets or set bed name
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.CreateBedResponse.PatientId">
+            <summary>
+            Gets or set patient id
+            </summary>
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Responses.UpdateBedResponse">
+            <summary>
+            Create bed response
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UpdateBedResponse.DepartmentId">
+            <summary>
+            Gets or set department Id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UpdateBedResponse.BedId">
+            <summary>
+            Gets or set bed id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UpdateBedResponse.BedName">
+            <summary>
+            Gets or set bed name
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UpdateBedResponse.PatientId">
+            <summary>
+            Gets or set patient id
             </summary>
         </member>
         <member name="T:SmartHospitalSystem.Api.Startup">

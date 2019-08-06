@@ -29,7 +29,7 @@ namespace SmartHospitalSystem.Core.Managers
         }
 
         /// <inheritdoc />
-        public Task<List<DepartmentModel>> GetAllUsers()
+        public Task<List<DepartmentModel>> GetAllDepartments()
         {
             return _departmentRepository.SelectAllAsync();
         }
