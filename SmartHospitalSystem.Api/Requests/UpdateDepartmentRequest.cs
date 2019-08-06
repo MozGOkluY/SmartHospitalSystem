@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace SmartHospitalSystem.Core.Models
+namespace SmartHospitalSystem.Api.Requests
 {
     /// <summary>
     /// Update department request

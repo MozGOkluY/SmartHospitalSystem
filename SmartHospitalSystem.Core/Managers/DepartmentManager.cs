@@ -23,7 +23,7 @@ namespace SmartHospitalSystem.Core.Managers
         }
 
         /// <inheritdoc />
-        public Task<bool> DeleteProfileAsync(string id)
+        public Task<bool> DeleteDepartmentAsync(string id)
         {
             return _departmentRepository.DeleteByIdAsync(id);
         }
@@ -41,13 +41,13 @@ namespace SmartHospitalSystem.Core.Managers
         }
 
         /// <inheritdoc />
-        public Task InsertProfileAsync(DepartmentModel departmentModel)
+        public Task InsertDepartmentAsync(DepartmentModel departmentModel)
         {
             return _departmentRepository.InsertAsync(departmentModel);
         }
 
         /// <inheritdoc />
-        public Task UpdateProfileAsync(DepartmentModel departmentModel)
+        public Task UpdateDepartmentAsync(DepartmentModel departmentModel)
         {
             return _departmentRepository.ReplaceByIdAsync(departmentModel.DepartmentId, departmentModel);
         }

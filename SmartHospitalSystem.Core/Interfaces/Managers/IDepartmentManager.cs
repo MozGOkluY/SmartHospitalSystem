@@ -27,20 +27,20 @@ namespace SmartHospitalSystem.Core.Interfaces.Managers
         /// </summary>
         /// <param name="departmentModel">Model of department that will be inserted</param>
         /// <returns></returns>
-        Task InsertProfileAsync(DepartmentModel departmentModel);
+        Task InsertDepartmentAsync(DepartmentModel departmentModel);
 
         /// <summary>
         /// Updates existing department in Db
         /// </summary>
         /// <param name="departmentModel">Model of department that will be updated</param>
         /// <returns></returns>
-        Task UpdateProfileAsync(DepartmentModel departmentModel);
+        Task UpdateDepartmentAsync(DepartmentModel departmentModel);
 
         /// <summary>
         /// Deletes existing department in Db
         /// </summary>
         /// <param name="id">Id of user that will be deleted</param>
         /// <returns></returns>
-        Task<bool> DeleteProfileAsync(string id);
+        Task<bool> DeleteDepartmentAsync(string id);
     }
 }

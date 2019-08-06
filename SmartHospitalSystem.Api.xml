@@ -51,6 +51,23 @@
         <member name="P:SmartHospitalSystem.Core.Configurations.TokenConfiguration.TokenExpiresIn">
             <inheritdoc />
         </member>
+        <member name="T:SmartHospitalSystem.Api.Controllers.DepartmentsController">
+            <summary>
+            The controller allows managing the units
+            </summary>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.DepartmentsController.#ctor(SmartHospitalSystem.Core.Interfaces.Managers.IDepartmentManager,AutoMapper.IMapper)">
+            <summary>
+            TokensController constructor
+            </summary>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.DepartmentsController.CreateDepartment(SmartHospitalSystem.Api.Requests.CreateDepartmentRequest)">
+            <summary>
+            Creates new unit in hospital
+            </summary>
+            <param name="loginModel"></param>
+            <returns></returns>
+        </member>
         <member name="T:SmartHospitalSystem.Api.Controllers.TokensController">
             <summary>
             The controller allows managing the authorization
@@ -103,6 +120,66 @@
                 Configures Swagger UI display.
             </summary>
             <param name="swaggerUiOptions">Swagger ui display options.</param>
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Requests.CreateDepartmentRequest">
+            <summary>
+            Create department request
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateDepartmentRequest.DepartmentName">
+            <summary>
+            Gets or set department name
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateDepartmentRequest.Description">
+            <summary>
+            Gets or set description
+            </summary>
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest">
+            <summary>
+            Update department request
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.DepartmentId">
+            <summary>
+            Gets or set department id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.DepartmentName">
+            <summary>
+            Gets or set department name
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.Description">
+            <summary>
+            Gets or set description
+            </summary>
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Responses.CreateDepartmentResponse">
+            <summary>
+            Create department response
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.CreateDepartmentResponse.DepartmentName">
+            <summary>
+            Gets or set department name
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.CreateDepartmentResponse.Description">
+            <summary>
+            Gets or set description
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.CreateDepartmentResponse.DepartmentId">
+            <summary>
+            Gets or sets department id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.CreateDepartmentResponse.CreatedDate">
+            <summary>
+            Gets or sets created date
+            </summary>
         </member>
     </members>
 </doc>
