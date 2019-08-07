@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using SmartHospitalSystem.Core.Enums;
 
-namespace SmartHospitalSystem.Api.Requests
+namespace SmartHospitalSystem.Api.Responses
 {
     /// <summary>
-    /// Create department request
+    /// User response
     /// </summary>
     [DataContract]
-    public class CreateDepartmentRequest
+    public class UserResponse
     {
+        /// <summary>
+        /// Gets or sets id
+        /// </summary>
+        public string Id { get; set; }
+
         /// <summary>
         /// Login
         /// </summary>

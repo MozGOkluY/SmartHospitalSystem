@@ -1,34 +1,89 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
+using SmartHospitalSystem.Core.Enums;
 
 namespace SmartHospitalSystem.Api.Requests
 {
     /// <summary>
-    /// Update department request
+    /// Update user request
     /// </summary>
     [DataContract]
     public class UpdateDepartmentRequest
     {
         /// <summary>
-        /// Gets or set department name
+        /// Gets or sets id
         /// </summary>
-        [DataMember]
-        public string DepartmentName { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
-        /// Gets or set description
+        /// Login
         /// </summary>
         [DataMember]
-        public string Description { get; set; }
+        public string Login { get; set; }
 
         /// <summary>
-        /// Gets or sets department id
+        /// Firstname
         /// </summary>
         [DataMember]
-        public string DepartmentId { get; set; }
+        public string FirstName { get; set; }
 
         /// <summary>
-        /// Gets or sets created date
+        /// LastName
+        /// </summary>
+        [DataMember]
+        public string LastName { get; set; }
+
+        /// <summary>
+        /// Role of user
+        /// </summary>
+        [DataMember]
+        public List<UserRoleEnum> Roles { get; set; }
+
+        /// <summary>
+        /// Email
+        /// </summary>
+        [DataMember]
+        public string Email { get; set; }
+
+        /// <summary>
+        /// Phone
+        /// </summary>
+        [DataMember]
+        public string Phone { get; set; }
+
+        /// <summary>
+        /// City
+        /// </summary>
+        [DataMember]
+        public string City { get; set; }
+
+        /// <summary>
+        /// MaritalStatus
+        /// </summary>
+        [DataMember]
+        public MaritalStatusEnum MaritalStatus { get; set; }
+
+        /// <summary>
+        /// Blood group
+        /// </summary>
+        [DataMember]
+        public BloodGroup BloodGroup { get; set; }
+
+        /// <summary>
+        /// Image
+        /// </summary>
+        [DataMember]
+        public string Image { get; set; }
+
+        /// <summary>
+        /// Date of user creation
+        /// </summary>
+        [DataMember]
+        public DateTime BirthDate { get; set; }
+
+        /// <summary>
+        /// Date of user creation
         /// </summary>
         [DataMember]
         public DateTime CreatedDate { get; set; }

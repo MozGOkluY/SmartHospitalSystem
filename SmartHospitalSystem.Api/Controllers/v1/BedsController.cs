@@ -127,7 +127,7 @@ namespace SmartHospitalSystem.Api.Controllers
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(string), 200)]
         [Route("{id}")]
-        public async Task<IActionResult> UpdateBedAsync([FromQuery]string id)
+        public async Task<IActionResult> DeleteBedAsync([FromQuery]string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {

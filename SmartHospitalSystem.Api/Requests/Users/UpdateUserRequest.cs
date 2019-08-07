@@ -6,11 +6,16 @@ using SmartHospitalSystem.Core.Enums;
 namespace SmartHospitalSystem.Api.Requests
 {
     /// <summary>
-    /// Create department request
+    /// Update user request
     /// </summary>
     [DataContract]
-    public class CreateDepartmentRequest
+    public class UpdateUserRequest
     {
+        /// <summary>
+        /// Gets or sets id
+        /// </summary>
+        public string Id { get; set; }
+
         /// <summary>
         /// Login
         /// </summary>

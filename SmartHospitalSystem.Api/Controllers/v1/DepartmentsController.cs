@@ -41,7 +41,7 @@ namespace SmartHospitalSystem.Api.Controllers
         [ProducesResponseType(typeof(CreateDepartmentResponse), 200)]
         public async Task<IActionResult> CreateDepartmentAsync([FromBody]CreateDepartmentRequest createDepartmentRequest)
         {
-            if (string.IsNullOrWhiteSpace(createDepartmentRequest.DepartmentName))
+            if (string.IsNullOrWhiteSpace(createDepartmentRequest.FirstName))
             {
                 return BadRequest("Invalid department name");
             }
@@ -96,20 +96,20 @@ namespace SmartHospitalSystem.Api.Controllers
         /// Updates new department in hospital
         /// </summary>
         /// <param name="id">Department id</param>
-        /// <param name="updateDepartmentRequest">Request model</param>
+        /// <param name="updateUserRequest">Request model</param>
         /// <returns>Updated department</returns>
         [HttpPut]
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(UpdateDepartmentResponse), 200)]
         [Route("{id}")]
-        public async Task<IActionResult> UpdateDepartmentAsync([FromQuery]string id, [FromBody]UpdateDepartmentRequest updateDepartmentRequest)
+        public async Task<IActionResult> UpdateDepartmentAsync([FromQuery]string id, [FromBody]UpdateDepartmentRequest updateUserRequest)
         {
-            if (string.IsNullOrWhiteSpace(updateDepartmentRequest.DepartmentName))
+            if (string.IsNullOrWhiteSpace(updateUserRequest.FirstName))
             {
                 return BadRequest("Invalid department name");
             }
 
-            if (!string.Equals(id, updateDepartmentRequest.DepartmentId, System.StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(id, updateUserRequest.Id, System.StringComparison.OrdinalIgnoreCase))
             {
                 return BadRequest("Inconsistency in departments id's");
             }
@@ -121,7 +121,7 @@ namespace SmartHospitalSystem.Api.Controllers
                 return BadRequest("Department not found");
             }
 
-            var model = _mapper.Map<DepartmentModel>(updateDepartmentRequest);
+            var model = _mapper.Map<DepartmentModel>(updateUserRequest);
             await _departmentManager.UpdateDepartmentAsync(model);
             var response = _mapper.Map<UpdateDepartmentResponse>(model);
 

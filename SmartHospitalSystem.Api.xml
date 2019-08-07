@@ -89,7 +89,7 @@
             <param name="updateBedRequest">Request model</param>
             <returns>Updated Bed</returns>
         </member>
-        <member name="M:SmartHospitalSystem.Api.Controllers.BedsController.UpdateBedAsync(System.String)">
+        <member name="M:SmartHospitalSystem.Api.Controllers.BedsController.DeleteBedAsync(System.String)">
             <summary>
             Deletes Bed in hospital
             </summary>
@@ -131,7 +131,7 @@
             Updates new department in hospital
             </summary>
             <param name="id">Department id</param>
-            <param name="updateDepartmentRequest">Request model</param>
+            <param name="updateUserRequest">Request model</param>
             <returns>Updated department</returns>
         </member>
         <member name="M:SmartHospitalSystem.Api.Controllers.DepartmentsController.UpdateDepartmentAsync(System.String)">
@@ -170,6 +170,51 @@
             Seeds basic users
             </summary>
             <response code="200">Basic users seeded</response>
+            <returns></returns>
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Controllers.UsersController">
+            <summary>
+            The controller allows managing the users
+            </summary>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.UsersController.#ctor(SmartHospitalSystem.Core.Interfaces.Managers.IUserManager,AutoMapper.IMapper)">
+            <summary>
+            Users controller constructor
+            </summary>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.UsersController.CreateuserAsync(SmartHospitalSystem.Api.Requests.CreateUserRequest)">
+            <summary>
+            Creates new user in hospital
+            </summary>
+            <param name="createUserRequest">Request model</param>
+            <returns>Created user</returns>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.UsersController.GetuserByIdAsync(System.String)">
+            <summary>
+            Get user by id
+            </summary>
+            <param name="id">user id</param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.UsersController.GetAllusersAsync">
+            <summary>
+            Get user by id
+            </summary>
+            <returns>All users</returns>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.UsersController.UpdateuserAsync(System.String,SmartHospitalSystem.Api.Requests.UpdateUserRequest)">
+            <summary>
+            Updates new user in hospital
+            </summary>
+            <param name="id">user id</param>
+            <param name="updateUserRequest">Request model</param>
+            <returns>Updated user</returns>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.UsersController.DeleteuserAsync(System.String)">
+            <summary>
+            Deletes user in hospital
+            </summary>
+            <param name="id">user id</param>
             <returns></returns>
         </member>
         <member name="T:SmartHospitalSystem.Api.Helpers.SwaggerHelper">
@@ -228,39 +273,139 @@
             Create department request
             </summary>
         </member>
-        <member name="P:SmartHospitalSystem.Api.Requests.CreateDepartmentRequest.DepartmentName">
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateDepartmentRequest.Id">
             <summary>
-            Gets or set department name
+            Gets or sets id
             </summary>
         </member>
-        <member name="P:SmartHospitalSystem.Api.Requests.CreateDepartmentRequest.Description">
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateDepartmentRequest.Login">
             <summary>
-            Gets or set description
+            Login
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateDepartmentRequest.FirstName">
+            <summary>
+            Firstname
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateDepartmentRequest.LastName">
+            <summary>
+            LastName
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateDepartmentRequest.Roles">
+            <summary>
+            Role of user
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateDepartmentRequest.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateDepartmentRequest.Phone">
+            <summary>
+            Phone
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateDepartmentRequest.City">
+            <summary>
+            City
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateDepartmentRequest.MaritalStatus">
+            <summary>
+            MaritalStatus
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateDepartmentRequest.BloodGroup">
+            <summary>
+            Blood group
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateDepartmentRequest.Image">
+            <summary>
+            Image
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateDepartmentRequest.BirthDate">
+            <summary>
+            Date of user creation
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateDepartmentRequest.CreatedDate">
+            <summary>
+            Date of user creation
             </summary>
         </member>
         <member name="T:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest">
             <summary>
-            Update department request
+            Update user request
             </summary>
         </member>
-        <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.DepartmentName">
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.Id">
             <summary>
-            Gets or set department name
+            Gets or sets id
             </summary>
         </member>
-        <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.Description">
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.Login">
             <summary>
-            Gets or set description
+            Login
             </summary>
         </member>
-        <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.DepartmentId">
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.FirstName">
             <summary>
-            Gets or sets department id
+            Firstname
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.LastName">
+            <summary>
+            LastName
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.Roles">
+            <summary>
+            Role of user
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.Phone">
+            <summary>
+            Phone
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.City">
+            <summary>
+            City
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.MaritalStatus">
+            <summary>
+            MaritalStatus
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.BloodGroup">
+            <summary>
+            Blood group
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.Image">
+            <summary>
+            Image
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.BirthDate">
+            <summary>
+            Date of user creation
             </summary>
         </member>
         <member name="P:SmartHospitalSystem.Api.Requests.UpdateDepartmentRequest.CreatedDate">
             <summary>
-            Gets or sets created date
+            Date of user creation
             </summary>
         </member>
         <member name="T:SmartHospitalSystem.Api.Requests.CreateBedRequest">
@@ -321,6 +466,146 @@
         <member name="P:SmartHospitalSystem.Api.Requests.UpdateBedRequest.CreatedDate">
             <summary>
             Date of unit creation
+            </summary>
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Requests.CreateUserRequest">
+            <summary>
+            Create department request
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateUserRequest.Id">
+            <summary>
+            Gets or sets id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateUserRequest.Login">
+            <summary>
+            Login
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateUserRequest.FirstName">
+            <summary>
+            Firstname
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateUserRequest.LastName">
+            <summary>
+            LastName
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateUserRequest.Roles">
+            <summary>
+            Role of user
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateUserRequest.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateUserRequest.Phone">
+            <summary>
+            Phone
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateUserRequest.City">
+            <summary>
+            City
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateUserRequest.MaritalStatus">
+            <summary>
+            MaritalStatus
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateUserRequest.BloodGroup">
+            <summary>
+            Blood group
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateUserRequest.Image">
+            <summary>
+            Image
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateUserRequest.BirthDate">
+            <summary>
+            Date of user creation
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateUserRequest.CreatedDate">
+            <summary>
+            Date of user creation
+            </summary>
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Requests.UpdateUserRequest">
+            <summary>
+            Update user request
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateUserRequest.Id">
+            <summary>
+            Gets or sets id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateUserRequest.Login">
+            <summary>
+            Login
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateUserRequest.FirstName">
+            <summary>
+            Firstname
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateUserRequest.LastName">
+            <summary>
+            LastName
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateUserRequest.Roles">
+            <summary>
+            Role of user
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateUserRequest.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateUserRequest.Phone">
+            <summary>
+            Phone
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateUserRequest.City">
+            <summary>
+            City
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateUserRequest.MaritalStatus">
+            <summary>
+            MaritalStatus
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateUserRequest.BloodGroup">
+            <summary>
+            Blood group
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateUserRequest.Image">
+            <summary>
+            Image
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateUserRequest.BirthDate">
+            <summary>
+            Date of user creation
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.UpdateUserRequest.CreatedDate">
+            <summary>
+            Date of user creation
             </summary>
         </member>
         <member name="T:SmartHospitalSystem.Api.Responses.CreateDepartmentResponse">
@@ -491,6 +776,226 @@
         <member name="P:SmartHospitalSystem.Api.Responses.UpdateBedResponse.PatientId">
             <summary>
             Gets or set patient id
+            </summary>
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Responses.CreateUserResponse">
+            <summary>
+            Create user response
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.CreateUserResponse.Id">
+            <summary>
+            Gets or sets id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.CreateUserResponse.Login">
+            <summary>
+            Login
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.CreateUserResponse.FirstName">
+            <summary>
+            Firstname
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.CreateUserResponse.LastName">
+            <summary>
+            LastName
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.CreateUserResponse.Roles">
+            <summary>
+            Role of user
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.CreateUserResponse.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.CreateUserResponse.Phone">
+            <summary>
+            Phone
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.CreateUserResponse.City">
+            <summary>
+            City
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.CreateUserResponse.MaritalStatus">
+            <summary>
+            MaritalStatus
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.CreateUserResponse.BloodGroup">
+            <summary>
+            Blood group
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.CreateUserResponse.Image">
+            <summary>
+            Image
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.CreateUserResponse.BirthDate">
+            <summary>
+            Date of user creation
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.CreateUserResponse.CreatedDate">
+            <summary>
+            Date of user creation
+            </summary>
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Responses.UpdateUserResponse">
+            <summary>
+            Create user response
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UpdateUserResponse.Id">
+            <summary>
+            Gets or sets id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UpdateUserResponse.Login">
+            <summary>
+            Login
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UpdateUserResponse.FirstName">
+            <summary>
+            Firstname
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UpdateUserResponse.LastName">
+            <summary>
+            LastName
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UpdateUserResponse.Roles">
+            <summary>
+            Role of user
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UpdateUserResponse.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UpdateUserResponse.Phone">
+            <summary>
+            Phone
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UpdateUserResponse.City">
+            <summary>
+            City
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UpdateUserResponse.MaritalStatus">
+            <summary>
+            MaritalStatus
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UpdateUserResponse.BloodGroup">
+            <summary>
+            Blood group
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UpdateUserResponse.Image">
+            <summary>
+            Image
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UpdateUserResponse.BirthDate">
+            <summary>
+            Date of user creation
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UpdateUserResponse.CreatedDate">
+            <summary>
+            Date of user creation
+            </summary>
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Responses.UserResponse">
+            <summary>
+            User response
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UserResponse.Id">
+            <summary>
+            Gets or sets id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UserResponse.Login">
+            <summary>
+            Login
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UserResponse.FirstName">
+            <summary>
+            Firstname
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UserResponse.LastName">
+            <summary>
+            LastName
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UserResponse.Roles">
+            <summary>
+            Role of user
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UserResponse.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UserResponse.Phone">
+            <summary>
+            Phone
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UserResponse.City">
+            <summary>
+            City
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UserResponse.MaritalStatus">
+            <summary>
+            MaritalStatus
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UserResponse.BloodGroup">
+            <summary>
+            Blood group
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UserResponse.Image">
+            <summary>
+            Image
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UserResponse.BirthDate">
+            <summary>
+            Date of user creation
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UserResponse.CreatedDate">
+            <summary>
+            Date of user creation
+            </summary>
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Responses.UsersResponse">
+            <summary>
+            Users response
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.UsersResponse.Users">
+            <summary>
+            Gets or sets users
             </summary>
         </member>
         <member name="T:SmartHospitalSystem.Api.Startup">

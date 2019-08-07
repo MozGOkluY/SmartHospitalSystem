@@ -9,8 +9,13 @@ namespace SmartHospitalSystem.Api.Requests
     /// Create department request
     /// </summary>
     [DataContract]
-    public class CreateDepartmentRequest
+    public class CreateUserRequest
     {
+        /// <summary>
+        /// Gets or sets id
+        /// </summary>
+        public string Id { get; set; }
+
         /// <summary>
         /// Login
         /// </summary>
