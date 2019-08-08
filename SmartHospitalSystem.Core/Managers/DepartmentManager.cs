@@ -47,7 +47,7 @@ namespace SmartHospitalSystem.Core.Managers
         }
 
         /// <inheritdoc />
-        public Task UpdateDepartmentAsync(DepartmentModel departmentModel)
+        public Task<bool> UpdateDepartmentAsync(DepartmentModel departmentModel)
         {
             return _departmentRepository.ReplaceByIdAsync(departmentModel.DepartmentId, departmentModel);
         }

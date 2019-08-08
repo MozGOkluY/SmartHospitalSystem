@@ -41,7 +41,7 @@ namespace SmartHospitalSystem.Api.Controllers
         [ProducesResponseType(typeof(CreateBedResponse), 200)]
         public async Task<IActionResult> CreateBedAsync([FromBody] CreateBedRequest createBedRequest)
         {
-            if (!string.IsNullOrWhiteSpace(createBedRequest.BedName))
+            if (string.IsNullOrWhiteSpace(createBedRequest.BedName))
             {
                 return BadRequest("Bed name is null or invalid");
             }
@@ -108,22 +108,26 @@ namespace SmartHospitalSystem.Api.Controllers
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(UpdateBedResponse), 200)]
         [Route("{id}")]
-        public async Task<IActionResult> UpdateBedAsync([FromQuery] string id, [FromBody] UpdateBedRequest updateBedRequest)
+        public async Task<IActionResult> UpdateBedAsync([FromRoute] string id, [FromBody] UpdateBedRequest updateBedRequest)
         {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return BadRequest("Id is null or empty");
+            }
+
             if (!string.Equals(id, updateBedRequest.BedId, System.StringComparison.OrdinalIgnoreCase))
             {
                 return BadRequest("Inconsistency in Beds id's");
             }
 
-            var bed = await _bedManager.GetById(id);
+            var model = _mapper.Map<BedModel>(updateBedRequest);
+            var result = await _bedManager.UpdateBedAsync(model);
 
-            if (bed == null)
+            if (!result)
             {
                 return BadRequest("Bed not found");
             }
 
-            var model = _mapper.Map<BedModel>(updateBedRequest);
-            await _bedManager.UpdateBedAsync(model);
             var response = _mapper.Map<UpdateBedResponse>(model);
 
             return Ok(response);
@@ -138,7 +142,7 @@ namespace SmartHospitalSystem.Api.Controllers
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(string), 200)]
         [Route("{id}")]
-        public async Task<IActionResult> DeleteBedByIdAsync([FromQuery] string id)
+        public async Task<IActionResult> DeleteBedByIdAsync([FromRoute] string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {

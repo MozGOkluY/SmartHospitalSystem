@@ -37,6 +37,6 @@ namespace SmartHospitalSystem.Api.Responses
         /// Date of unit creation
         /// </summary>
         [DataMember]
-        public DateTime CreatedDate { get; set; }   // date and time
+        public DateTime CreatedDate { get; set; }
     }
 }

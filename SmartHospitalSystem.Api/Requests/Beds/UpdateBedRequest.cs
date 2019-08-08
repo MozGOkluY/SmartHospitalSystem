@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace SmartHospitalSystem.Api.Responses
+namespace SmartHospitalSystem.Api.Requests
 {
     /// <summary>
-    /// Create bed response
+    /// Update bed request
     /// </summary>
     [DataContract]
-    public class UpdateBedResponse
+    public class UpdateBedRequest
     {
         /// <summary>
         /// Gets or set department Id

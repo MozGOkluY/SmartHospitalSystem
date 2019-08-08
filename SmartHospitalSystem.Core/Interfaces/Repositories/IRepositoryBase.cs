@@ -40,7 +40,7 @@ namespace SmartHospitalSystem.Core.Interfaces.Repositories
         /// <param name="id">Id of entity that will be replaced</param>
         /// <param name="entity">The entity of T that will be inserted in DB</param>
         /// <returns></returns>
-        Task ReplaceByIdAsync(string id, T entity);
+        Task<bool> ReplaceByIdAsync(string id, T entity);
 
         /// <summary>
         /// Delete existing entity of T in DB by expression

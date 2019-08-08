@@ -12,6 +12,7 @@ namespace SmartHospitalSystem.Api.Responses
         /// <summary>
         /// Gets or sets departments
         /// </summary>
+        [DataMember]
         public List<DepartmentResponse> Departments { get; set; }
     }
 }

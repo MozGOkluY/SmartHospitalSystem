@@ -48,7 +48,7 @@ namespace SmartHospitalSystem.Core.Interfaces.Managers
         /// </summary>
         /// <param name="userProfile">Model of user that will be updated</param>
         /// <returns></returns>
-        Task UpdateProfileAsync(UserProfile userProfile);
+        Task<bool> UpdateProfileAsync(UserProfile userProfile);
 
         /// <summary>
         /// Deletes existing user in Db

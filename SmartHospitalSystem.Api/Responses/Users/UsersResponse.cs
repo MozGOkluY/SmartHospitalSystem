@@ -12,6 +12,7 @@ namespace SmartHospitalSystem.Api.Responses
         /// <summary>
         /// Gets or sets users
         /// </summary>
+        [DataMember]
         public List<UserResponse> Users { get; set; }
     }
 }

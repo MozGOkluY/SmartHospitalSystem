@@ -34,7 +34,7 @@ namespace SmartHospitalSystem.Core.Interfaces.Managers
         /// </summary>
         /// <param name="bedModel">Model of bed that will be updated</param>
         /// <returns></returns>
-        Task UpdateBedAsync(BedModel bedModel);
+        Task<bool> UpdateBedAsync(BedModel bedModel);
 
         /// <summary>
         /// Deletes existing bed in Db

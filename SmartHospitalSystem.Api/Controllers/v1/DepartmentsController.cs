@@ -109,11 +109,11 @@ namespace SmartHospitalSystem.Api.Controllers
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(UpdateDepartmentResponse), 200)]
         [Route("{id}")]
-        public async Task<IActionResult> UpdateDepartmentAsync([FromQuery] string id, [FromBody] UpdateDepartmentRequest updateUserRequest)
+        public async Task<IActionResult> UpdateDepartmentAsync([FromRoute]string id, [FromBody] UpdateDepartmentRequest updateUserRequest)
         {
-            if (string.IsNullOrWhiteSpace(updateUserRequest.DepartmentName))
+            if (string.IsNullOrWhiteSpace(id))
             {
-                return BadRequest("Invalid department name");
+                return BadRequest("Id is null or invalid");
             }
 
             if (!string.Equals(id, updateUserRequest.DepartmentId, System.StringComparison.OrdinalIgnoreCase))
@@ -121,15 +121,19 @@ namespace SmartHospitalSystem.Api.Controllers
                 return BadRequest("Inconsistency in departments id's");
             }
 
-            var department = await _departmentManager.GetById(id);
+            if (string.IsNullOrWhiteSpace(updateUserRequest.DepartmentName))
+            {
+                return BadRequest("Invalid department name");
+            }
 
-            if (department == null)
+            var model = _mapper.Map<DepartmentModel>(updateUserRequest);
+            var result = await _departmentManager.UpdateDepartmentAsync(model);
+
+            if (!result)
             {
                 return BadRequest("Department not found");
             }
 
-            var model = _mapper.Map<DepartmentModel>(updateUserRequest);
-            await _departmentManager.UpdateDepartmentAsync(model);
             var response = _mapper.Map<UpdateDepartmentResponse>(model);
 
             return Ok(response);
@@ -144,7 +148,7 @@ namespace SmartHospitalSystem.Api.Controllers
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(string), 200)]
         [Route("{id}")]
-        public async Task<IActionResult> DeleteDepartmentAsync([FromQuery] string id)
+        public async Task<IActionResult> DeleteDepartmentAsync([FromRoute]string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {

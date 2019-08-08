@@ -12,11 +12,6 @@ namespace SmartHospitalSystem.Api.Requests
     public class CreateUserRequest
     {
         /// <summary>
-        /// Gets or sets id
-        /// </summary>
-        public string Id { get; set; }
-
-        /// <summary>
         /// Login
         /// </summary>
         [DataMember]

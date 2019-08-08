@@ -82,11 +82,12 @@ namespace SmartHospitalSystem.Core.Repositories
         /// <param name="id">Id of entity that will be replaced</param>
         /// <param name="entity">The entity of T that will be inserted in DB</param>
         /// <returns></returns>
-        public Task ReplaceByIdAsync(string id, T entity)
+        public async Task<bool> ReplaceByIdAsync(string id, T entity)
         {
             var filter = new BsonDocument("_id", id);
-            return MongoDatabase.GetCollection<T>(CollectionName)
+            var replaceResult = await MongoDatabase.GetCollection<T>(CollectionName)
                 .ReplaceOneAsync(filter, entity);
+            return replaceResult.MatchedCount > 0;
         }
 
         /// <summary>

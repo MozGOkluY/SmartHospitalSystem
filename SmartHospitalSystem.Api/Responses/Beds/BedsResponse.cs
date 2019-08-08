@@ -12,6 +12,7 @@ namespace SmartHospitalSystem.Api.Responses
         /// <summary>
         /// Gets or sets beds
         /// </summary>
+        [DataMember]
         public List<BedResponse> Beds { get; set; }
     }
 }

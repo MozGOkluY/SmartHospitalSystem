@@ -47,7 +47,7 @@ namespace SmartHospitalSystem.Core.Managers
         }
 
         /// <inheritdoc />
-        public Task UpdateBedAsync(BedModel bedModel)
+        public Task<bool> UpdateBedAsync(BedModel bedModel)
         {
             return _bedRepository.ReplaceByIdAsync(bedModel.BedId, bedModel);
         }

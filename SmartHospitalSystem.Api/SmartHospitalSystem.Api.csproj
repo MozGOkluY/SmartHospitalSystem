@@ -27,8 +27,8 @@
     <Folder Include="Responses\" />
     <Folder Include="Requests\Departments\" />
     <Folder Include="Responses\Departments\" />
-    <Folder Include="Responses\Locations\" />
-    <Folder Include="Requests\Locations\" />
+    <Folder Include="Responses\Beds\" />
+    <Folder Include="Requests\Beds\" />
     <Folder Include="Requests\Users\" />
     <Folder Include="Responses\Users\" />
     <Folder Include="Responses\Patients\" />

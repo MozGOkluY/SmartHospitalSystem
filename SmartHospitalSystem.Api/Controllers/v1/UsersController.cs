@@ -48,6 +48,13 @@ namespace SmartHospitalSystem.Api.Controllers
                 return BadRequest("Not enough rights");
             }
 
+            if (!createUserRequest.Roles.Any() || string.IsNullOrWhiteSpace(createUserRequest.FirstName)
+                || string.IsNullOrWhiteSpace(createUserRequest.LastName) || string.IsNullOrWhiteSpace(createUserRequest.Password)
+                || string.IsNullOrWhiteSpace(createUserRequest.Login))
+            {
+                return BadRequest("Invalid model");
+            }
+
             var model = _mapper.Map<UserProfile>(createUserRequest);
             await _userManager.InsertProfileAsync(model);
             var response = _mapper.Map<CreateUserResponse>(model);
@@ -72,8 +79,14 @@ namespace SmartHospitalSystem.Api.Controllers
                 return BadRequest("Id is null or invalid");
             }
 
-            var result = await _userManager.GetById(id);
-            var response = _mapper.Map<UserResponse>(result);
+            var user = await _userManager.GetById(id);
+
+            if (user == null)
+            {
+                return BadRequest("User not found");
+            }
+
+            var response = _mapper.Map<UserResponse>(user);
 
             return Ok(response);
         }
@@ -109,22 +122,21 @@ namespace SmartHospitalSystem.Api.Controllers
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(UpdateUserResponse), 200)]
         [Route("{id}")]
-        public async Task<IActionResult> UpdateUserAsync([FromQuery] string id, [FromBody] UpdateUserRequest updateUserRequest)
+        public async Task<IActionResult> UpdateUserAsync([FromRoute] string id, [FromBody] UpdateUserRequest updateUserRequest)
         {
             if (!string.Equals(id, updateUserRequest.Id, System.StringComparison.OrdinalIgnoreCase))
             {
                 return BadRequest("Inconsistency in users id's");
             }
 
-            var user = await _userManager.GetById(id);
+            var model = _mapper.Map<UserProfile>(updateUserRequest);
+            var result = await _userManager.UpdateProfileAsync(model);
 
-            if (user == null)
+            if (!result)
             {
-                return BadRequest("User not found");
+                return BadRequest("Bed not found");
             }
 
-            var model = _mapper.Map<UserProfile>(updateUserRequest);
-            await _userManager.UpdateProfileAsync(model);
             var response = _mapper.Map<UpdateUserResponse>(model);
 
             return Ok(response);
@@ -140,7 +152,7 @@ namespace SmartHospitalSystem.Api.Controllers
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(string), 200)]
         [Route("{id}")]
-        public async Task<IActionResult> DeleteUserAsync([FromQuery] string id)
+        public async Task<IActionResult> DeleteUserAsync([FromRoute] string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {

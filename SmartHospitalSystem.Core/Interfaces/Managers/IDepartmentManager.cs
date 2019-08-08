@@ -34,7 +34,7 @@ namespace SmartHospitalSystem.Core.Interfaces.Managers
         /// </summary>
         /// <param name="departmentModel">Model of department that will be updated</param>
         /// <returns></returns>
-        Task UpdateDepartmentAsync(DepartmentModel departmentModel);
+        Task<bool> UpdateDepartmentAsync(DepartmentModel departmentModel);
 
         /// <summary>
         /// Deletes existing department in Db

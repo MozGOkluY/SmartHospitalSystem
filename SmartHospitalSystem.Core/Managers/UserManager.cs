@@ -81,7 +81,7 @@ namespace SmartHospitalSystem.Core.Managers
         /// </summary>
         /// <param name="userProfile">Model of user that will be updated</param>
         /// <returns></returns>
-        public Task UpdateProfileAsync(UserProfile userProfile)
+        public Task<bool> UpdateProfileAsync(UserProfile userProfile)
         {
             return _userRepository.ReplaceByIdAsync(userProfile.Id, userProfile);
         }
