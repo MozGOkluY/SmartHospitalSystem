@@ -14,6 +14,7 @@ namespace SmartHospitalSystem.Api.Responses
         /// <summary>
         /// Gets or sets id
         /// </summary>
+        [DataMember]
         public string Id { get; set; }
 
         /// <summary>

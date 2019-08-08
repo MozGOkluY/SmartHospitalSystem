@@ -141,6 +141,31 @@
             <param name="id">Department id</param>
             <returns></returns>
         </member>
+        <member name="T:SmartHospitalSystem.Api.Controllers.PatientsController">
+            <summary>
+            The controller allows managing the users
+            </summary>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.PatientsController.#ctor(SmartHospitalSystem.Core.Interfaces.Managers.IUserManager,SmartHospitalSystem.Core.Interfaces.Managers.IPatientManager,AutoMapper.IMapper)">
+            <summary>
+            Users controller constructor
+            </summary>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.PatientsController.GetPatientByIdAsync(System.String)">
+            <summary>
+            Get patient by id
+            </summary>
+            <param name="id">user id</param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.PatientsController.CreateVisitAsync(System.String,SmartHospitalSystem.Api.Responses.VisitRequest)">
+            <summary>
+            Get patient by id
+            </summary>
+            <param name="id">user id</param>
+            <param name="visitRequest">Visit request</param>
+            <returns></returns>
+        </member>
         <member name="T:SmartHospitalSystem.Api.Controllers.TokensController">
             <summary>
             The controller allows managing the authorization
@@ -182,14 +207,14 @@
             Users controller constructor
             </summary>
         </member>
-        <member name="M:SmartHospitalSystem.Api.Controllers.UsersController.CreateuserAsync(SmartHospitalSystem.Api.Requests.CreateUserRequest)">
+        <member name="M:SmartHospitalSystem.Api.Controllers.UsersController.CreateUserAsync(SmartHospitalSystem.Api.Requests.CreateUserRequest)">
             <summary>
             Creates new user in hospital
             </summary>
             <param name="createUserRequest">Request model</param>
             <returns>Created user</returns>
         </member>
-        <member name="M:SmartHospitalSystem.Api.Controllers.UsersController.GetuserByIdAsync(System.String)">
+        <member name="M:SmartHospitalSystem.Api.Controllers.UsersController.GetUserByIdAsync(System.String)">
             <summary>
             Get user by id
             </summary>
@@ -271,11 +296,6 @@
         <member name="T:SmartHospitalSystem.Api.Requests.CreateDepartmentRequest">
             <summary>
             Create department request
-            </summary>
-        </member>
-        <member name="P:SmartHospitalSystem.Api.Requests.CreateDepartmentRequest.Id">
-            <summary>
-            Gets or sets id
             </summary>
         </member>
         <member name="P:SmartHospitalSystem.Api.Requests.CreateDepartmentRequest.Login">
@@ -488,6 +508,11 @@
             Firstname
             </summary>
         </member>
+        <member name="P:SmartHospitalSystem.Api.Requests.CreateUserRequest.Password">
+            <summary>
+            Passowrd
+            </summary>
+        </member>
         <member name="P:SmartHospitalSystem.Api.Requests.CreateUserRequest.LastName">
             <summary>
             LastName
@@ -529,11 +554,6 @@
             </summary>
         </member>
         <member name="P:SmartHospitalSystem.Api.Requests.CreateUserRequest.BirthDate">
-            <summary>
-            Date of user creation
-            </summary>
-        </member>
-        <member name="P:SmartHospitalSystem.Api.Requests.CreateUserRequest.CreatedDate">
             <summary>
             Date of user creation
             </summary>
@@ -606,6 +626,51 @@
         <member name="P:SmartHospitalSystem.Api.Requests.UpdateUserRequest.CreatedDate">
             <summary>
             Date of user creation
+            </summary>
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Responses.VisitRequest">
+            <summary>
+            Create visit response
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.VisitRequest.UserProfileId">
+            <summary>
+            Gets or set user Id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.VisitRequest.BedId">
+            <summary>
+            Gets or set bed id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.VisitRequest.Symptoms">
+            <summary>
+            Gets or set patient symptoms
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.VisitRequest.Allergies">
+            <summary>
+            Gets or set patient allergies
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.VisitRequest.Notes">
+            <summary>
+            Gets or set patient allergies
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.VisitRequest.Status">
+            <summary>
+            Gets or set patient status
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.VisitRequest.TreatmentType">
+            <summary>
+            Gets or set treatment type
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.VisitRequest.CreatedDate">
+            <summary>
+            Date of unit creation
             </summary>
         </member>
         <member name="T:SmartHospitalSystem.Api.Responses.CreateDepartmentResponse">
@@ -776,6 +841,81 @@
         <member name="P:SmartHospitalSystem.Api.Responses.UpdateBedResponse.PatientId">
             <summary>
             Gets or set patient id
+            </summary>
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Responses.PatientResponse">
+            <summary>
+            Create patient response
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.PatientResponse.UserData">
+            <summary>
+            Gets or sets user data
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.PatientResponse.Visits">
+            <summary>
+            Gets or sets visits
+            </summary>
+        </member>
+        <member name="T:SmartHospitalSystem.Api.Responses.VisitReponse">
+            <summary>
+            Create visit response
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.VisitReponse.UserProfileId">
+            <summary>
+            Gets or set user Id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.VisitReponse.VisitId">
+            <summary>
+            Gets or set treatment id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.VisitReponse.BedId">
+            <summary>
+            Gets or set bed id
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.VisitReponse.Symptoms">
+            <summary>
+            Gets or set patient symptoms
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.VisitReponse.Allergies">
+            <summary>
+            Gets or set patient allergies
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.VisitReponse.Notes">
+            <summary>
+            Gets or set patient allergies
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.VisitReponse.Diagnosis">
+            <summary>
+            Gets or set patient diagnosis
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.VisitReponse.TreatmentHistory">
+            <summary>
+            Gets or set patient diagnosis
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.VisitReponse.Status">
+            <summary>
+            Gets or set patient status
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.VisitReponse.TreatmentType">
+            <summary>
+            Gets or set treatment type
+            </summary>
+        </member>
+        <member name="P:SmartHospitalSystem.Api.Responses.VisitReponse.CreatedDate">
+            <summary>
+            Date of unit creation
             </summary>
         </member>
         <member name="T:SmartHospitalSystem.Api.Responses.CreateUserResponse">

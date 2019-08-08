@@ -29,6 +29,12 @@ namespace SmartHospitalSystem.Api.Requests
         public string FirstName { get; set; }
 
         /// <summary>
+        /// Passowrd
+        /// </summary>
+        [DataMember]
+        public string Password { get; set; }
+
+        /// <summary>
         /// LastName
         /// </summary>
         [DataMember]
@@ -81,11 +87,5 @@ namespace SmartHospitalSystem.Api.Requests
         /// </summary>
         [DataMember]
         public DateTime BirthDate { get; set; }
-
-        /// <summary>
-        /// Date of user creation
-        /// </summary>
-        [DataMember]
-        public DateTime CreatedDate { get; set; }
     }
 }

@@ -31,6 +31,11 @@
         public const string PATIENT = "patient";
 
         /// <summary>
+        /// Admin and registry
+        /// </summary>
+        public const string ADMIN_REGISTRY = "admin, registry";
+
+        /// <summary>
         /// Mixed role
         /// </summary>
         public const string MIXED = "nurse, admin, registry";

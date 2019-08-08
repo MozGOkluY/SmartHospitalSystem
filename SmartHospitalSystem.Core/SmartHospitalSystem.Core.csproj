@@ -17,6 +17,8 @@
     <Folder Include="Repositories\" />
     <Folder Include="Managers\" />
     <Folder Include="Constants\" />
+    <Folder Include="Models\Dto\" />
+    <Folder Include="Models\DbModels\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="2.8.1" />

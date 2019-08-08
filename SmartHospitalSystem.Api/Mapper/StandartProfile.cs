@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Linq;
+using AutoMapper;
 using SmartHospitalSystem.Api.Requests;
 using SmartHospitalSystem.Api.Responses;
 using SmartHospitalSystem.Core.Models;
@@ -37,7 +38,12 @@ namespace SmartHospitalSystem.Api.Mapper
 
             CreateMap<UserProfile, CreateUserResponse>();
             CreateMap<UserProfile, UpdateUserResponse>();
-            CreateMap<UserProfile, UsersResponse>();
+            CreateMap<UserProfile, UserResponse>();
+
+            // patients
+            CreateMap<VisitRequest, VisitModel>();
+            CreateMap<VisitModel, VisitReponse>();
+            CreateMap<PatientModel, PatientResponse>();
         }
     }
 }

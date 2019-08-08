@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using SmartHospitalSystem.Api.Requests;
 using SmartHospitalSystem.Api.Responses;
 using SmartHospitalSystem.Core.Constants;
+using SmartHospitalSystem.Core.Enums;
 using SmartHospitalSystem.Core.Interfaces.Managers;
 using SmartHospitalSystem.Core.Models;
 
@@ -14,7 +15,6 @@ namespace SmartHospitalSystem.Api.Controllers
     /// <summary>
     /// The controller allows managing the users
     /// </summary>
-    [Authorize(Roles = AuthRoles.ADMIN)]
     [Route("api/v1/[controller]")]
     [ApiController]
     public class UsersController : Controller
@@ -36,11 +36,18 @@ namespace SmartHospitalSystem.Api.Controllers
         /// </summary>
         /// <param name="createUserRequest">Request model</param>
         /// <returns>Created user</returns>
+        [Authorize(Roles = AuthRoles.ADMIN_REGISTRY)]
         [HttpPost]
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(CreateUserRequest), 200)]
-        public async Task<IActionResult> CreateuserAsync([FromBody]CreateUserRequest createUserRequest)
+        public async Task<IActionResult> CreateUserAsync([FromBody]CreateUserRequest createUserRequest)
         {
+            if (createUserRequest.Roles.Contains(UserRoleEnum.Admin)
+                && !HttpContext.User.IsInRole(UserRoleEnum.Admin.ToString()))
+            {
+                return BadRequest("Not enough rights");
+            }
+
             var model = _mapper.Map<UserProfile>(createUserRequest);
             await _userManager.InsertProfileAsync(model);
             var response = _mapper.Map<CreateUserResponse>(model);
@@ -52,11 +59,12 @@ namespace SmartHospitalSystem.Api.Controllers
         /// </summary>
         /// <param name="id">user id</param>
         /// <returns></returns>
+        [Authorize(Roles = AuthRoles.ADMIN)]
         [HttpGet]
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(UserResponse), 200)]
         [Route("{id}")]
-        public async Task<IActionResult> GetuserByIdAsync([FromRoute]string id)
+        public async Task<IActionResult> GetUserByIdAsync([FromRoute]string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {

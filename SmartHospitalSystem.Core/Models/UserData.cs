@@ -1,92 +1,98 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
+using MongoDB.Bson.Serialization.Attributes;
 using SmartHospitalSystem.Core.Enums;
 
-namespace SmartHospitalSystem.Api.Responses
+namespace SmartHospitalSystem.Core.Models
 {
     /// <summary>
-    /// User response
+    /// Full user model
     /// </summary>
-    [DataContract]
-    public class UserResponse
+    public class UserData
     {
         /// <summary>
-        /// Gets or sets id
+        /// Unique id
         /// </summary>
-        [DataMember]
         public string Id { get; set; }
 
         /// <summary>
         /// Login
         /// </summary>
-        [DataMember]
+        [BsonElement("login")]
         public string Login { get; set; }
+
+        /// <summary>
+        /// Password
+        /// </summary>
+        [BsonElement("password")]
+        public string Password { get; set; }
 
         /// <summary>
         /// Firstname
         /// </summary>
-        [DataMember]
+        [BsonElement("firstName")]
         public string FirstName { get; set; }
 
         /// <summary>
         /// LastName
         /// </summary>
-        [DataMember]
+        [BsonElement("lastName")]
         public string LastName { get; set; }
 
         /// <summary>
         /// Role of user
         /// </summary>
-        [DataMember]
+        [BsonElement("role")]
         public List<UserRoleEnum> Roles { get; set; }
 
         /// <summary>
         /// Email
         /// </summary>
-        [DataMember]
+        [BsonElement("email")]
         public string Email { get; set; }
 
         /// <summary>
         /// Phone
         /// </summary>
-        [DataMember]
+        [BsonElement("phone")]
         public string Phone { get; set; }
 
         /// <summary>
         /// City
         /// </summary>
-        [DataMember]
+        [BsonElement("city")]
         public string City { get; set; }
 
         /// <summary>
         /// MaritalStatus
         /// </summary>
-        [DataMember]
+        [BsonElement("maritalStatus")]
         public MaritalStatusEnum MaritalStatus { get; set; }
 
         /// <summary>
         /// Blood group
         /// </summary>
-        [DataMember]
+        [BsonElement("bloodGroup")]
         public BloodGroup BloodGroup { get; set; }
 
         /// <summary>
         /// Image
         /// </summary>
-        [DataMember]
+        [BsonElement("image")]
         public string Image { get; set; }
 
         /// <summary>
         /// Date of user creation
         /// </summary>
-        [DataMember]
-        public DateTime BirthDate { get; set; }
+        [BsonElement("birthDate")]
+        [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
+        public DateTime BirthDate { get; set; }   // date and time
 
         /// <summary>
         /// Date of user creation
         /// </summary>
-        [DataMember]
-        public DateTime CreatedDate { get; set; }
+        [BsonElement("createdDate")]
+        [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
+        public DateTime CreatedDate { get; set; }   // date and time
     }
 }

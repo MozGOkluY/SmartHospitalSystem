@@ -31,6 +31,8 @@
     <Folder Include="Requests\Locations\" />
     <Folder Include="Requests\Users\" />
     <Folder Include="Responses\Users\" />
+    <Folder Include="Responses\Patients\" />
+    <Folder Include="Requests\Patients\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmartHospitalSystem.Core\SmartHospitalSystem.Core.csproj" />

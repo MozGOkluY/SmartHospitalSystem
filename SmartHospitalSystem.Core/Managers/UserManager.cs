@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using SmartHospitalSystem.Core.Interfaces.Managers;
 using SmartHospitalSystem.Core.Interfaces.Repositories;
 using SmartHospitalSystem.Core.Models;
@@ -12,14 +13,16 @@ namespace SmartHospitalSystem.Core.Managers
     public class UserManager : IUserManager
     {
         private readonly IUserRepository _userRepository;
+        private readonly IPasswordHasher<UserProfile> _passwordHasher;
 
         /// <summary>
         /// Constructor of UserManager
         /// </summary>
         /// <param name="userRepository"></param>
-        public UserManager(IUserRepository userRepository)
+        public UserManager(IUserRepository userRepository, IPasswordHasher<UserProfile> passwordHasher)
         {
             _userRepository = userRepository;
+            _passwordHasher = passwordHasher;
         }
 
         /// <summary>
@@ -68,6 +71,8 @@ namespace SmartHospitalSystem.Core.Managers
         /// <returns></returns>
         public Task InsertProfileAsync(UserProfile userProfile)
         {
+            var hasPassowrd = _passwordHasher.HashPassword(userProfile, userProfile.Password);
+            userProfile.Password = hasPassowrd;
             return _userRepository.InsertAsync(userProfile);
         }
 
