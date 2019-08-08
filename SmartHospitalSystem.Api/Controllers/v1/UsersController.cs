@@ -40,7 +40,7 @@ namespace SmartHospitalSystem.Api.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(CreateUserRequest), 200)]
-        public async Task<IActionResult> CreateUserAsync([FromBody]CreateUserRequest createUserRequest)
+        public async Task<IActionResult> CreateUserAsync([FromBody] CreateUserRequest createUserRequest)
         {
             if (createUserRequest.Roles.Contains(UserRoleEnum.Admin)
                 && !HttpContext.User.IsInRole(UserRoleEnum.Admin.ToString()))
@@ -51,6 +51,7 @@ namespace SmartHospitalSystem.Api.Controllers
             var model = _mapper.Map<UserProfile>(createUserRequest);
             await _userManager.InsertProfileAsync(model);
             var response = _mapper.Map<CreateUserResponse>(model);
+
             return Ok(response);
         }
 
@@ -64,7 +65,7 @@ namespace SmartHospitalSystem.Api.Controllers
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(UserResponse), 200)]
         [Route("{id}")]
-        public async Task<IActionResult> GetUserByIdAsync([FromRoute]string id)
+        public async Task<IActionResult> GetUserByIdAsync([FromRoute] string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
@@ -73,6 +74,7 @@ namespace SmartHospitalSystem.Api.Controllers
 
             var result = await _userManager.GetById(id);
             var response = _mapper.Map<UserResponse>(result);
+
             return Ok(response);
         }
 
@@ -80,6 +82,7 @@ namespace SmartHospitalSystem.Api.Controllers
         /// Get user by id
         /// </summary>
         /// <returns>All users</returns>
+        [Authorize(Roles = AuthRoles.ADMIN)]
         [HttpGet]
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(UsersResponse), 200)]
@@ -101,11 +104,12 @@ namespace SmartHospitalSystem.Api.Controllers
         /// <param name="id">user id</param>
         /// <param name="updateUserRequest">Request model</param>
         /// <returns>Updated user</returns>
+        [Authorize(Roles = AuthRoles.ADMIN)]
         [HttpPut]
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(UpdateUserResponse), 200)]
         [Route("{id}")]
-        public async Task<IActionResult> UpdateuserAsync([FromQuery]string id, [FromBody]UpdateUserRequest updateUserRequest)
+        public async Task<IActionResult> UpdateUserAsync([FromQuery] string id, [FromBody] UpdateUserRequest updateUserRequest)
         {
             if (!string.Equals(id, updateUserRequest.Id, System.StringComparison.OrdinalIgnoreCase))
             {
@@ -116,7 +120,7 @@ namespace SmartHospitalSystem.Api.Controllers
 
             if (user == null)
             {
-                return BadRequest("user not found");
+                return BadRequest("User not found");
             }
 
             var model = _mapper.Map<UserProfile>(updateUserRequest);
@@ -131,11 +135,12 @@ namespace SmartHospitalSystem.Api.Controllers
         /// </summary>
         /// <param name="id">user id</param>
         /// <returns></returns>
+        [Authorize(Roles = AuthRoles.ADMIN)]
         [HttpDelete]
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(string), 200)]
         [Route("{id}")]
-        public async Task<IActionResult> DeleteuserAsync([FromQuery]string id)
+        public async Task<IActionResult> DeleteUserAsync([FromQuery] string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {

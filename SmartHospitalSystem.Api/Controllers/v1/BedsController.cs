@@ -39,11 +39,17 @@ namespace SmartHospitalSystem.Api.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(CreateBedResponse), 200)]
-        public async Task<IActionResult> CreateBedAsync([FromBody]CreateBedRequest createBedRequest)
+        public async Task<IActionResult> CreateBedAsync([FromBody] CreateBedRequest createBedRequest)
         {
+            if (!string.IsNullOrWhiteSpace(createBedRequest.BedName))
+            {
+                return BadRequest("Bed name is null or invalid");
+            }
+
             var model = _mapper.Map<BedModel>(createBedRequest);
             await _bedManager.InsertBedAsync(model);
             var response = _mapper.Map<CreateBedResponse>(model);
+
             return Ok(response);
         }
 
@@ -56,15 +62,20 @@ namespace SmartHospitalSystem.Api.Controllers
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(BedResponse), 200)]
         [Route("{id}")]
-        public async Task<IActionResult> GetBedByIdAsync([FromRoute]string id)
+        public async Task<IActionResult> GetBedByIdAsync([FromRoute] string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                return BadRequest("Id is null or invalid");
+                return BadRequest("Id is null or empty");
             }
 
-            var result = await _bedManager.GetById(id);
-            var response = _mapper.Map<BedResponse>(result);
+            var bed = await _bedManager.GetById(id);
+            if (bed == null)
+            {
+                return BadRequest("Bed not found");
+            }
+
+            var response = _mapper.Map<BedResponse>(bed);
             return Ok(response);
         }
 
@@ -97,7 +108,7 @@ namespace SmartHospitalSystem.Api.Controllers
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(UpdateBedResponse), 200)]
         [Route("{id}")]
-        public async Task<IActionResult> UpdateBedAsync([FromQuery]string id, [FromBody]UpdateBedRequest updateBedRequest)
+        public async Task<IActionResult> UpdateBedAsync([FromQuery] string id, [FromBody] UpdateBedRequest updateBedRequest)
         {
             if (!string.Equals(id, updateBedRequest.BedId, System.StringComparison.OrdinalIgnoreCase))
             {
@@ -127,16 +138,15 @@ namespace SmartHospitalSystem.Api.Controllers
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(string), 200)]
         [Route("{id}")]
-        public async Task<IActionResult> DeleteBedAsync([FromQuery]string id)
+        public async Task<IActionResult> DeleteBedByIdAsync([FromQuery] string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
                 return BadRequest("Id is null or empty");
             }
 
-            var bed = await _bedManager.GetById(id);
-
-            if (bed == null)
+            var result = await _bedManager.DeleteBedAsync(id);
+            if (result)
             {
                 return BadRequest("Bed not found");
             }

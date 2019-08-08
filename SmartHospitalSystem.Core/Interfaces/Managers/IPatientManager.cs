@@ -14,7 +14,7 @@ namespace SmartHospitalSystem.Core.Interfaces.Managers
         /// </summary>
         /// <param name="profile">Profile of existing user</param>
         /// <returns></returns>
-        Task<PatientModel> GetPatient(UserProfile profile);
+        Task<PatientModel> GetPatientDto(UserProfile profile);
 
         /// <summary>
         /// Creates new visit for patient

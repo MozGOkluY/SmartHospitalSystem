@@ -23,7 +23,7 @@ namespace SmartHospitalSystem.Core.Managers
         }
 
         /// <inheritdoc />
-        public Task<bool> DeleteProfileAsync(string id)
+        public Task<bool> DeleteBedAsync(string id)
         {
             return _bedRepository.DeleteByIdAsync(id);
         }

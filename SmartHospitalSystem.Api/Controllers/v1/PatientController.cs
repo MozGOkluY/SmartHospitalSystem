@@ -11,7 +11,7 @@ using SmartHospitalSystem.Core.Models;
 namespace SmartHospitalSystem.Api.Controllers
 {
     /// <summary>
-    /// The controller allows managing the users
+    /// The controller allows managing the patients
     /// </summary>
     [Authorize(Roles = AuthRoles.ADMIN_REGISTRY)]
     [Route("api/v1/[controller]")]
@@ -41,7 +41,7 @@ namespace SmartHospitalSystem.Api.Controllers
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(PatientResponse), 200)]
         [Route("{id}")]
-        public async Task<IActionResult> GetPatientByIdAsync([FromRoute]string id)
+        public async Task<IActionResult> GetPatientByIdAsync([FromRoute] string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
@@ -55,35 +55,35 @@ namespace SmartHospitalSystem.Api.Controllers
                 return BadRequest("Patient not found");
             }
 
-            var patient = await _patientManager.GetPatient(user);
+            var patient = await _patientManager.GetPatientDto(user);
 
             var userResponse = _mapper.Map<UserResponse>(patient.UserData);
             var visitsResponse = patient.Visits.Select(x => _mapper.Map<VisitReponse>(x)).ToList();
-
             var response = _mapper.Map<PatientResponse>(patient);
+
             return Ok(response);
         }
 
         /// <summary>
-        /// Get patient by id
+        /// Creates visit for patient
         /// </summary>
-        /// <param name="id">user id</param>
+        /// <param name="id">Patient id</param>
         /// <param name="visitRequest">Visit request</param>
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(PatientResponse), 200)]
         [Route("{id}")]
-        public async Task<IActionResult> CreateVisitAsync([FromRoute]string id, [FromBody] VisitRequest visitRequest)
+        public async Task<IActionResult> CreateVisitAsync([FromRoute] string id, [FromBody] VisitRequest visitRequest)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
                 return BadRequest("Id is null or invalid");
             }
 
-                if (!string.Equals(id, visitRequest.UserProfileId, System.StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(id, visitRequest.UserProfileId, System.StringComparison.OrdinalIgnoreCase))
             {
-                return BadRequest("Mismatch in ids");
+                return BadRequest("Inconsistency in ids");
             }
 
             var user = await _userManager.GetById(id);
@@ -95,8 +95,8 @@ namespace SmartHospitalSystem.Api.Controllers
 
             var visit = _mapper.Map<VisitModel>(visitRequest);
             await _patientManager.CreateVisitForPatient(visit);
-
             var visitResponse = _mapper.Map<VisitReponse>(visit);
+
             return Ok(visitResponse);
         }
     }

@@ -41,6 +41,6 @@ namespace SmartHospitalSystem.Core.Interfaces.Managers
         /// </summary>
         /// <param name="id">Id of user that will be deleted</param>
         /// <returns></returns>
-        Task<bool> DeleteProfileAsync(string id);
+        Task<bool> DeleteBedAsync(string id);
     }
 }

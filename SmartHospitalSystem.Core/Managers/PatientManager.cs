@@ -23,7 +23,7 @@ namespace SmartHospitalSystem.Core.Managers
         }
 
         /// <inheritdoc />
-        public async Task<PatientModel> GetPatient(UserProfile profile)
+        public async Task<PatientModel> GetPatientDto(UserProfile profile)
         {
             var visits = await _visitRepository.GetByUserId(profile.Id);
 

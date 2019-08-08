@@ -39,9 +39,9 @@ namespace SmartHospitalSystem.Api.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(CreateDepartmentResponse), 200)]
-        public async Task<IActionResult> CreateDepartmentAsync([FromBody]CreateDepartmentRequest createDepartmentRequest)
+        public async Task<IActionResult> CreateDepartmentAsync([FromBody] CreateDepartmentRequest createDepartmentRequest)
         {
-            if (string.IsNullOrWhiteSpace(createDepartmentRequest.FirstName))
+            if (string.IsNullOrWhiteSpace(createDepartmentRequest.DepartmentName))
             {
                 return BadRequest("Invalid department name");
             }
@@ -49,6 +49,7 @@ namespace SmartHospitalSystem.Api.Controllers
             var model = _mapper.Map<DepartmentModel>(createDepartmentRequest);
             await _departmentManager.InsertDepartmentAsync(model);
             var response = _mapper.Map<CreateDepartmentResponse>(model);
+
             return Ok(response);
         }
 
@@ -61,15 +62,21 @@ namespace SmartHospitalSystem.Api.Controllers
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(DepartmentResponse), 200)]
         [Route("{id}")]
-        public async Task<IActionResult> GetDepartmentByIdAsync([FromRoute]string id)
+        public async Task<IActionResult> GetDepartmentByIdAsync([FromRoute] string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
                 return BadRequest("Id is null or invalid");
             }
 
-            var result = await _departmentManager.GetById(id);
-            var response = _mapper.Map<DepartmentResponse>(result);
+            var department = await _departmentManager.GetById(id);
+
+            if (department == null)
+            {
+                return BadRequest("Department not found");
+            }
+
+            var response = _mapper.Map<DepartmentResponse>(department);
             return Ok(response);
         }
 
@@ -102,14 +109,14 @@ namespace SmartHospitalSystem.Api.Controllers
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(UpdateDepartmentResponse), 200)]
         [Route("{id}")]
-        public async Task<IActionResult> UpdateDepartmentAsync([FromQuery]string id, [FromBody]UpdateDepartmentRequest updateUserRequest)
+        public async Task<IActionResult> UpdateDepartmentAsync([FromQuery] string id, [FromBody] UpdateDepartmentRequest updateUserRequest)
         {
-            if (string.IsNullOrWhiteSpace(updateUserRequest.FirstName))
+            if (string.IsNullOrWhiteSpace(updateUserRequest.DepartmentName))
             {
                 return BadRequest("Invalid department name");
             }
 
-            if (!string.Equals(id, updateUserRequest.Id, System.StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(id, updateUserRequest.DepartmentId, System.StringComparison.OrdinalIgnoreCase))
             {
                 return BadRequest("Inconsistency in departments id's");
             }
@@ -137,16 +144,16 @@ namespace SmartHospitalSystem.Api.Controllers
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(string), 200)]
         [Route("{id}")]
-        public async Task<IActionResult> UpdateDepartmentAsync([FromQuery]string id)
+        public async Task<IActionResult> DeleteDepartmentAsync([FromQuery] string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
                 return BadRequest("Id is null or empty");
             }
 
-            var department = await _departmentManager.GetById(id);
+            var result = await _departmentManager.DeleteDepartmentAsync(id);
 
-            if (department == null)
+            if (result)
             {
                 return BadRequest("Department not found");
             }
