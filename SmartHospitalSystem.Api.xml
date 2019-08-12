@@ -146,7 +146,7 @@
             The controller allows managing the patients
             </summary>
         </member>
-        <member name="M:SmartHospitalSystem.Api.Controllers.PatientsController.#ctor(SmartHospitalSystem.Core.Interfaces.Managers.IUserManager,SmartHospitalSystem.Core.Interfaces.Managers.IPatientManager,AutoMapper.IMapper)">
+        <member name="M:SmartHospitalSystem.Api.Controllers.PatientsController.#ctor(SmartHospitalSystem.Core.Interfaces.Managers.IUserManager,SmartHospitalSystem.Core.Interfaces.Managers.IBedManager,SmartHospitalSystem.Core.Interfaces.Managers.IPatientManager,AutoMapper.IMapper)">
             <summary>
             Users controller constructor
             </summary>
@@ -164,6 +164,14 @@
             </summary>
             <param name="id">Patient id</param>
             <param name="visitRequest">Visit request</param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartHospitalSystem.Api.Controllers.PatientsController.AssignPatientToBed(System.String,System.String)">
+            <summary>
+            Creates visit for patient
+            </summary>
+            <param name="id">Patient id</param>
+            <param name="bedId">Bed id</param>
             <returns></returns>
         </member>
         <member name="T:SmartHospitalSystem.Api.Controllers.TokensController">

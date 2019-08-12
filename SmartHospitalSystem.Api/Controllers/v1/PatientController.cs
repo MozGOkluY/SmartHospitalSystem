@@ -19,15 +19,17 @@ namespace SmartHospitalSystem.Api.Controllers
     public class PatientsController : Controller
     {
         private readonly IUserManager _userManager;
+        private readonly IBedManager _bedManager;
         private readonly IPatientManager _patientManager;
         private readonly IMapper _mapper;
 
         /// <summary>
         /// Users controller constructor
         /// </summary>
-        public PatientsController(IUserManager userManager, IPatientManager patientManager, IMapper mapper)
+        public PatientsController(IUserManager userManager, IBedManager bedManager, IPatientManager patientManager, IMapper mapper)
         {
             _userManager = userManager;
+            _bedManager = bedManager;
             _patientManager = patientManager;
             _mapper = mapper;
         }
@@ -80,7 +82,7 @@ namespace SmartHospitalSystem.Api.Controllers
             {
                 return BadRequest("Id is null or invalid");
             }
-
+            
             if (!string.Equals(id, visitRequest.UserProfileId, System.StringComparison.OrdinalIgnoreCase))
             {
                 return BadRequest("Inconsistency in ids");
@@ -98,6 +100,44 @@ namespace SmartHospitalSystem.Api.Controllers
             var visitResponse = _mapper.Map<VisitReponse>(visit);
 
             return Ok(visitResponse);
+        }
+
+        /// <summary>
+        /// Creates visit for patient
+        /// </summary>
+        /// <param name="id">Patient id</param>
+        /// <param name="bedId">Bed id</param>
+        /// <returns></returns>
+        [HttpPost]
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(string), 200)]
+        [Route("{id}/bed/{bedId}")]
+        public async Task<IActionResult> AssignPatientToBed([FromRoute] string id, [FromRoute] string bedId)
+        {
+            if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(bedId))
+            {
+                return BadRequest("Some id is null or empty");
+            }
+
+            var bed = await _bedManager.GetById(bedId);
+
+            if (bed == null)
+            {
+                return BadRequest("Bed not found");
+            }
+
+            var patient = await _userManager.GetById(id);
+
+            if (patient == null)
+            {
+                return BadRequest("Patient not found");
+            }
+
+            bed.PatientId = patient.Id;
+
+            await _bedManager.UpdateBedAsync(bed);
+
+            return Ok("Assigned");
         }
     }
 }
