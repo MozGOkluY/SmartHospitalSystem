@@ -76,7 +76,7 @@ namespace SmartHospitalSystem.Api.Controllers
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(PatientResponse), 200)]
         [Route("{id}")]
-        public async Task<IActionResult> CreateVisitAsync([FromRoute] string id, [FromBody] VisitRequest visitRequest)
+        public async Task<IActionResult> CreateVisitAsync([FromRoute] string id, [FromBody] CreateVisitRequest visitRequest)
         {
             if (string.IsNullOrWhiteSpace(id))
             {

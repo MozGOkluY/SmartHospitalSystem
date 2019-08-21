@@ -9,7 +9,7 @@ namespace SmartHospitalSystem.Api.Responses
     /// Create visit response
     /// </summary>
     [DataContract]
-    public class VisitRequest
+    public class CreateVisitRequest
     {
         /// <summary>
         /// Gets or set user Id

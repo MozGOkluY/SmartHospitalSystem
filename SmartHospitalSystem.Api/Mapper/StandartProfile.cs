@@ -32,7 +32,7 @@ namespace SmartHospitalSystem.Api.Mapper
             CreateMap<BedModel, UpdateBedResponse>();
             CreateMap<BedModel, BedResponse>();
 
-            // usets
+            // users
             CreateMap<CreateUserRequest, UserProfile>();
             CreateMap<UpdateUserRequest, UserProfile>();
 
@@ -41,9 +41,17 @@ namespace SmartHospitalSystem.Api.Mapper
             CreateMap<UserProfile, UserResponse>();
 
             // patients
-            CreateMap<VisitRequest, VisitModel>();
+            CreateMap<CreateVisitRequest, VisitModel>();
             CreateMap<VisitModel, VisitReponse>();
             CreateMap<PatientModel, PatientResponse>();
+
+            // procedures
+            CreateMap<CreateProcedureRequest, ProcedureModel>();
+            CreateMap<UpdateProcedureRequest, ProcedureModel>();
+
+            CreateMap<ProcedureModel, ProcedureResponse>();
+            CreateMap<ProcedureModel, CreateProcedureResponse>();
+            CreateMap<ProcedureModel, UpdateProcedureResponse>();
         }
     }
 }
