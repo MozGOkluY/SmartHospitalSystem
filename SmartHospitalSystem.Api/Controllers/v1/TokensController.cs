@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using SmartHospitalSystem.Api.Responses;
 using SmartHospitalSystem.Core.Enums;
 using SmartHospitalSystem.Core.Interfaces.Configurations;
 using SmartHospitalSystem.Core.Interfaces.Managers;
@@ -58,7 +59,7 @@ namespace SmartHospitalSystem.Api.Controllers
         [Route("login")]
         [ProducesResponseType(typeof(string), 401)]
         [ProducesResponseType(typeof(string), 400)]
-        [ProducesResponseType(typeof(string), 200)]
+        [ProducesResponseType(typeof(TokenResponse), 200)]
         [HttpPost]
         public async Task<IActionResult> LoginUser([FromBody]UserLoginModel loginModel)
         {
@@ -76,12 +77,20 @@ namespace SmartHospitalSystem.Api.Controllers
                 if (user != null)
                 {
                     var result = GenerateToken(profile);
-                    return Ok(new { User = user.Id, Token = result });
+                    var tokenString = new JwtSecurityTokenHandler().WriteToken(result);
+                    var response = new TokenResponse
+                    {
+                        Token = tokenString,
+                        TokenExpires = result.ValidTo,
+                        UserId = user.Id
+                    };
+
+                    return Ok(response);
                 }
                 return Unauthorized();
             }
 
-            return NotFound("Profile with give login not found");
+            return BadRequest("Profile with give login not found");
         }
 
 
@@ -120,7 +129,7 @@ namespace SmartHospitalSystem.Api.Controllers
             return Ok(profiles);
         }
 
-        private string GenerateToken(UserProfile profile)
+        private JwtSecurityToken GenerateToken(UserProfile profile)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenConfiguration.Secret));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -132,14 +141,12 @@ namespace SmartHospitalSystem.Api.Controllers
             claims.AddRange(profile.Roles.Select(x => new Claim(ClaimTypes.Role, x.ToString().ToLower())));
 
 
-            var token = new JwtSecurityToken(
+            return new JwtSecurityToken(
                 _tokenConfiguration.Issuer,
                 _tokenConfiguration.Audience,
                 claims,
                 expires: DateTime.Now.AddDays(_tokenConfiguration.TokenExpiresIn),
                 signingCredentials: credentials);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
     }

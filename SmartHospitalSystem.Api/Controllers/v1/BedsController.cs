@@ -80,7 +80,7 @@ namespace SmartHospitalSystem.Api.Controllers
         }
 
         /// <summary>
-        /// Get bed by id
+        /// Get all beds
         /// </summary>
         /// <returns>All Beds</returns>
         [HttpGet]

@@ -35,11 +35,11 @@ namespace SmartHospitalSystem.Api.Controllers
         /// <summary>
         /// Get procedure by id
         /// </summary>
-        /// <param name="id">user id</param>
+        /// <param name="id">Procedure id</param>
         /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(string), 400)]
-        [ProducesResponseType(typeof(PatientResponse), 200)]
+        [ProducesResponseType(typeof(ProcedureResponse), 200)]
         [Route("{id}")]
         public async Task<IActionResult> GetProcedureById([FromRoute] string id)
         {
@@ -66,7 +66,7 @@ namespace SmartHospitalSystem.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(string), 400)]
-        [ProducesResponseType(typeof(PatientResponse), 200)]
+        [ProducesResponseType(typeof(ProceduresResponse), 200)]
         public async Task<IActionResult> GetProceduresAsync()
         {
             var procedures = await _procedureRepository.SelectAllAsync();
@@ -86,7 +86,7 @@ namespace SmartHospitalSystem.Api.Controllers
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(string), 400)]
-        [ProducesResponseType(typeof(PatientResponse), 200)]
+        [ProducesResponseType(typeof(CreateProcedureResponse), 200)]
         public async Task<IActionResult> PostProceduresAsync([FromBody] CreateProcedureRequest createProcedureRequest)
         {
             if (!ModelState.IsValid)
@@ -106,9 +106,9 @@ namespace SmartHospitalSystem.Api.Controllers
         /// </summary>
         /// <param name="id">user id</param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpDelete]
         [ProducesResponseType(typeof(string), 400)]
-        [ProducesResponseType(typeof(PatientResponse), 200)]
+        [ProducesResponseType(typeof(string), 200)]
         [Route("{id}")]
         public async Task<IActionResult> DeleteProcedureById([FromRoute] string id)
         {

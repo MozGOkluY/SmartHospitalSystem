@@ -12,6 +12,7 @@ namespace SmartHospitalSystem.Api.Responses
         /// <summary>
         /// Gets or sets procedures
         /// </summary>
+        [DataMember]
         public List<ProcedureResponse> Procedures { get; set; }
     }
 }

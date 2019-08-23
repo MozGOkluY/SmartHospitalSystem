@@ -81,12 +81,12 @@ namespace SmartHospitalSystem.Api.Controllers
         }
 
         /// <summary>
-        /// Get department by id
+        /// Get all departments
         /// </summary>
         /// <returns>All departments</returns>
         [HttpGet]
         [ProducesResponseType(typeof(string), 400)]
-        [ProducesResponseType(typeof(DepartmentResponse), 200)]
+        [ProducesResponseType(typeof(DepartmentsResponse), 200)]
         public async Task<IActionResult> GetAllDepartmentsAsync()
         {
             var result = await _departmentManager.GetAllDepartments();
